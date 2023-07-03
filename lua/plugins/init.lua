@@ -9,7 +9,7 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  -- -- add gruvbox
+  -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
 
   -- -- Configure LazyVim to load gruvbox
@@ -20,7 +20,7 @@ return {
   --   },
   -- },
 
-  -- -- change trouble config
+  -- change trouble config
   -- {
   --   "folke/trouble.nvim",
   --   -- opts will be merged with the parent spec
@@ -29,6 +29,16 @@ return {
 
   -- disable trouble
   -- { "folke/trouble.nvim", enabled = false },
+
+  -- disable popup cmdline
+  -- {
+  --   "folke/noice.nvim",
+  --   opts = {
+  --     cmdline = {
+  --       view = "cmdline",
+  --     },
+  --   }
+  -- },
 
   -- add symbols-outline
   {
@@ -49,28 +59,28 @@ return {
   --   end,
   -- },
 
-  -- -- change some telescope options and a keymap to browse plugin files
-  -- {
-  --   "nvim-telescope/telescope.nvim",
-  --   keys = {
-  --     -- add a keymap to browse plugin files
-  --     -- stylua: ignore
-  --     {
-  --       "<leader>fp",
-  --       function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-  --       desc = "Find Plugin File",
-  --     },
-  --   },
-  --   -- change some options
-  --   opts = {
-  --     defaults = {
-  --       layout_strategy = "horizontal",
-  --       layout_config = { prompt_position = "top" },
-  --       sorting_strategy = "ascending",
-  --       winblend = 0,
-  --     },
-  --   },
-  -- },
+  -- change some telescope options and a keymap to browse plugin files
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      -- add a keymap to browse plugin files
+      -- stylua: ignore
+      {
+        "<leader>PP",
+        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
+        desc = "Find Plugin File",
+      },
+    },
+    -- change some options
+    opts = {
+      defaults = {
+        layout_strategy = "horizontal",
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
+        winblend = 0,
+      },
+    },
+  },
 
   -- add telescope-fzf-native
   {
@@ -91,8 +101,11 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
+        -- these servers will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+        rust_analyzer = {},
+        tsserver = {},
+        cssls = {},
       },
     },
   },
@@ -181,15 +194,18 @@ return {
   -- },
 
   -- -- or you can return new options to override all the defaults
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     return {
-  --       --[[add your custom lualine config here]]
-  --     }
-  --   end,
-  -- },
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return {
+        options = {
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+        }
+      }
+    end,
+  },
 
   -- use mini.starter instead of alpha
   -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
