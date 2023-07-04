@@ -30,6 +30,9 @@ return {
   -- disable trouble
   -- { "folke/trouble.nvim", enabled = false },
 
+  -- disable nvim-notify
+  { "rcarriga/nvim-notify", enabled = false },
+
   -- disable popup cmdline
   -- {
   --   "folke/noice.nvim",
