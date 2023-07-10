@@ -1,9 +1,9 @@
 return {
   "folke/noice.nvim",
   config = require("noice").setup({
-    messages = {
-      enabled = false,
-    },
+    -- messages = {
+    --   enabled = false,
+    -- },
     cmdline = {
       view = "cmdline",
     },
@@ -16,7 +16,7 @@ return {
         },
         opts = { skip = true },
       },
-      -- shor the "recording @q" message
+      -- show the "recording @q" message
       {
         view = "notify",
         filter = { event = "msg_showmode" },
