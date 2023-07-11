@@ -8,3 +8,17 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", { noremap = true, silent = true, des
 
 -- open oil with hyphen
 vim.keymap.set("n", "-", require("oil").open_float, { desc = "Open parent directory" })
+
+-- open definition in split (horizontal and vertical)
+vim.keymap.set(
+  "n",
+  "gH",
+  ":split<CR>gd",
+  { noremap = true, silent = true, desc = "Open definition in horizontal split" }
+)
+vim.keymap.set(
+  "n",
+  "gV",
+  ":vsplit<CR>gd",
+  { noremap = true, silent = true, desc = "Open definition in vertical split" }
+)
